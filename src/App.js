@@ -5,7 +5,7 @@ import {useState} from 'react';
 function App() {
 
  
-  let [title,b]=useState(['남자 코트 추천','강남 우동맛집','파이썬독학']);
+  let [title,setTitle]=useState(['남자 코트 추천','강남 우동맛집','파이썬독학']);
   let [like,setLike]=useState(0);
 
   return (
@@ -13,6 +13,20 @@ function App() {
      <div className='black-nav'>
        <h4 style={{fontSize:'16px'}}>ReactBlog</h4>
      </div>
+
+     <button onClick={()=>{
+       let copy = [...title];
+       copy[0]='여자 코트 추천';
+       setTitle(copy);
+       //setTitle(['여자 코트 추천','강남 우동맛집','파이썬독학']); 이런식으로 바꿔도 되는데 확장성이 없음
+       }}>글수정</button>
+
+       <button onClick={()=>{
+         let i;
+         let copy = [...title];
+         copy.sort();
+         setTitle(copy);
+       }}>가나라순정렬</button>
 
      <div className='list'>
        <h4>{title[0]} <span onClick={()=>{setLike(like+1)}}>👍</span> {like} </h4>
